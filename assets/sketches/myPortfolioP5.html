@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="sketch-holder"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script>
+    let sketch = function(p) {
+      let wavs;
+      let type;
+      let colors1;
+      let classic;
+
+      p.setup = function() {
+        const iframeWidth = document.getElementById('sketch-holder').clientWidth;
+        p.createCanvas(iframeWidth, p.windowHeight);
+        colors1 = [
+          p.color(255, 0, 0),
+          p.color(0, 255, 0),
+          p.color(0, 0, 255),
+        ];
+
+        colors2 = [
+          p.color(255, 255, 50, 60),
+          p.color(0, 255, 0, 20),
+          p.color(0, 0, 255, 50),
+          p.color(0, 0, 255, 50),
+        ];
+
+        type = 0;
+        classic = new Waves(colors1);
+        p.textSize(100);
+      };
+
+      p.draw = function() {
+        p.blendMode(p.BLEND);
+        p.background(255);
+        p.blendMode(p.EXCLUSION);
+        p.noFill();
+        p.strokeWeight(20);
+        classic.drawWaves();
+
+        p.fill(255);
+        p.strokeWeight(4);
+        p.textSize(p.windowWidth / 20);
+
+        p.textAlign(p.CENTER);
+        p.text('M Y   P O R T F O L I O', p.width / 2, p.height / 2);
+
+        p.blendMode(p.DARKEST);
+
+        p.strokeWeight(4);
+        p.textSize(50);
+      };
+
+      class Waves {
+        constructor(colors) {
+          this.colors = colors;
+        }
+        
+        drawWaves() {
+          for (let i = 0; i < this.colors.length; i++) {
+            p.stroke(this.colors[i]);
+            p.beginShape();
+            for (let w = -20; w < p.width + 20; w += 5) {
+              let h = p.height / 2;
+              h += 200 * p.sin(w * 0.03 + p.frameCount * 0.07 + i * p.TWO_PI / 3) * p.pow(p.abs(p.sin(w * 0.001 + p.frameCount * 0.02)), 5);
+              p.curveVertex(w, h);
+            }
+            p.endShape();
+          }
+        }
+      }
+    };
+
+    let myp5 = new p5(sketch, 'sketch-holder');
+  </script>
+</body>
+</html>

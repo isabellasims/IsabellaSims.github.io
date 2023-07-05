@@ -1,0 +1,62 @@
+body {
+    font-family: Questrial;
+    margin: 0 auto;
+}
+
+.header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #E8985E;
+    filter: drop-shadow(2px 4px 6px black)
+}
+
+ul {
+    list-style-type: none;
+
+}
+
+li {
+    float: left;
+}
+
+li a {
+    text-decoration: none;
+    color: black;
+}
+
+.header-link {
+    padding: 2.2rem 3rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: black;
+}
+
+.name {
+    align-self: center;
+}
+
+#about {
+    padding: 3%;
+}
+
+.about-me-section {
+    display: flex;
+}
+
+.me {
+    height: 35vh;
+    filter: drop-shadow(2px 4px 6px black);
+}
+.about-text {
+    text-align: center;
+    line-height: 5vh;
+    width: 75%;
+    padding-left: 5%;
+}
+
+#portfolio-sketch-iframe {
+    width: 100%;
+    border: 0;
+    /* margin: 2%; */
+}
